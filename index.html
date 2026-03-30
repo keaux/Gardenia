@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaia Garden Site Analysis: St. George, UT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #F5F2EA;
+            color: #3D332D;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2, h3, h4, .serif { font-family: 'Lora', serif; }
+        .text-sage { color: #7D8C74; }
+        .bg-sage { background-color: #7D8C74; }
+        .text-terracotta { color: #C05E46; }
+        .bg-terracotta { background-color: #C05E46; }
+        .text-water { color: #8BA1B0; }
+        .bg-water { background-color: #8BA1B0; }
+        .text-clay { color: #3D332D; }
+        .border-sage { border-color: #7D8C74; }
+        .border-water { border-color: #8BA1B0; }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) { .chart-container { height: 400px; } }
+
+        html { scroll-behavior: smooth; }
+
+        .nav-link { transition: all 0.2s ease-in-out; }
+        .nav-link:hover {
+            color: #C05E46;
+            border-bottom: 2px solid #C05E46;
+        }
+        
+        .plant-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .plant-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(61, 51, 45, 0.1);
+        }
+        .data-table th {
+            background-color: rgba(125, 140, 116, 0.1);
+            color: #7D8C74;
+            font-weight: 600;
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(61, 51, 45, 0.1);
+        }
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(61, 51, 45, 0.05);
+            background-color: #ffffff;
+            color: #3D332D;
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#7D8C74] selection:text-white">
+
+    <nav class="sticky top-0 z-50 bg-[#F5F2EA]/95 backdrop-blur-sm border-b border-[#7D8C74]/20 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="font-bold text-xl text-clay tracking-wide flex items-center gap-2 mb-3 md:mb-0">
+                <span class="text-2xl text-sage">&#10048;</span> Gaia Garden Plan
+            </div>
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-6 text-sm sm:text-base font-medium">
+                <a href="#site" class="nav-link text-clay">Site & Soil</a>
+                <a href="#climate" class="nav-link text-clay">Climate</a>
+                <a href="#philosophy" class="nav-link text-clay">Philosophy</a>
+                <a href="#plants" class="nav-link text-clay">Botanical Guilds</a>
+                <a href="#water" class="nav-link text-clay">Hydrology</a>
+                <a href="#evolution" class="nav-link text-clay">Evolution</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="max-w-4xl mx-auto px-6 pt-16 pb-12">
+        <p class="text-sage font-bold tracking-widest uppercase text-sm mb-2">Comprehensive Site Analysis & Layered Landscape Design</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl text-clay mb-6 leading-tight">327 N 2040 E<br><span class="text-terracotta">St. George, Utah</span></h1>
+        
+        <div class="prose prose-lg text-clay/80 leading-relaxed space-y-4">
+            <p>The transition from conventional turf and sterile zero-scape toward a dynamic, layered ecological landscape represents a critical evolution. This plan rejects the barren aesthetic in favor of a life-supporting, semi-lush desert oasis.</p>
+            <p>Engineered specifically for your property, this Gaia-inspired methodology balances water efficiency with rich biodiversity. Above all, it applies strict safety constraints—zero toxicity, soft foliage, and foundation-safe root structures—to ensure an ideal environment for four children to play and dogs to roam safely.</p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 pb-24 space-y-24">
+
+        <section id="site" class="scroll-mt-24">
+            <div class="mb-8 border-l-4 border-sage pl-4">
+                <h2 class="text-3xl text-clay mb-2">Environmental Baseline & Pedology</h2>
+                <p class="text-clay/70">Foundational geospatial coordinates and soil geomechanics dictating the landscape architecture.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+                <div class="bg-white p-6 rounded-xl border border-clay/10 shadow-sm relative overflow-hidden">
+                    <div class="text-4xl absolute -right-2 -bottom-4 opacity-10">&#9728;</div>
+                    <p class="text-sm font-bold text-sage uppercase tracking-wider mb-1">Lot Size</p>
+                    <p class="text-3xl font-light text-clay mb-2">0.15 <span class="text-lg text-clay/50">Acres</span></p>
+                    <p class="text-xs text-clay/60">6,534 Sq. Ft. (74' W x 86' D)</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-clay/10 shadow-sm relative overflow-hidden">
+                    <div class="text-4xl absolute -right-2 -bottom-4 opacity-10">&#127968;</div>
+                    <p class="text-sm font-bold text-terracotta uppercase tracking-wider mb-1">Structure</p>
+                    <p class="text-3xl font-light text-clay mb-2">1993 <span class="text-lg text-clay/50">Build</span></p>
+                    <p class="text-xs text-clay/60">Foundation safety restricts shallow, aggressive roots.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-clay/10 shadow-sm relative overflow-hidden">
+                    <div class="text-4xl absolute -right-2 -bottom-4 opacity-10">&#129517;</div>
+                    <p class="text-sm font-bold text-water uppercase tracking-wider mb-1">Orientation</p>
+                    <p class="text-3xl font-light text-clay mb-2">W / E <span class="text-lg text-clay/50">Split</span></p>
+                    <p class="text-xs text-clay/60">Front yard faces West. Backyard faces East.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-clay/10 shadow-sm relative overflow-hidden">
+                    <div class="text-4xl absolute -right-2 -bottom-4 opacity-10">&#9968;</div>
+                    <p class="text-sm font-bold text-sage uppercase tracking-wider mb-1">Topography</p>
+                    <p class="text-3xl font-light text-clay mb-2">0-5% <span class="text-lg text-clay/50">Slope</span></p>
+                    <p class="text-xs text-clay/60">Flat. Requires micro-grading for water retention.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8">
+                <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-clay/10 shadow-sm flex flex-col gap-2 sticky top-28">
+                    <h3 class="text-lg font-bold text-clay mb-4">St. George Soil Series Profile</h3>
+                    
+                    <div class="flex items-center gap-4 group">
+                        <div class="w-16 h-8 bg-[#8B5A44] rounded-sm flex items-center justify-center text-white/50 text-xs shadow-inner">0-9"</div>
+                        <div>
+                            <p class="font-bold text-sm text-clay">Ap (Surface): Silt Loam</p>
+                            <p class="text-xs text-clay/70">Reddish Brown. pH 8.0. Supportive of fine roots.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 group">
+                        <div class="w-16 h-12 bg-[#B35938] rounded-sm shadow-inner"></div>
+                        <div>
+                            <p class="font-bold text-sm text-clay">Cy1 (Subsoil 1): 9-20"</p>
+                            <p class="text-xs text-clay/70">Yellowish Red. pH 8.1. Fine gypsum granules.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 group">
+                        <div class="w-16 h-12 bg-[#8B5A44] rounded-sm shadow-inner"></div>
+                        <div>
+                            <p class="font-bold text-sm text-clay">Cy2 (Subsoil 2): 20-29"</p>
+                            <p class="text-xs text-clay/70">Reddish Brown. pH 8.2. Massive structure.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 group">
+                        <div class="w-16 h-16 bg-[#B35938] rounded-sm shadow-inner"></div>
+                        <div>
+                            <p class="font-bold text-sm text-clay">Cy3 (Subsoil 3): 29-38"</p>
+                            <p class="text-xs text-clay/70">Yellowish Red. pH 8.2. High fine tubular pores.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6 text-clay/80 leading-relaxed">
+                    <div>
+                        <h3 class="text-2xl text-clay mb-2">Alkalinity & Mechanical Constraints</h3>
+                        <p>The native soil is a coarse-silty, mixed, superactive, calcareous, thermic Typic Torrifluvent. The native pH ranges from 8.0 to 8.2 (moderately to strongly alkaline). This high alkalinity limits nutrient bioavailability, specifically locking out essential micronutrients like iron.</p>
+                    </div>
+                    
+                    <div class="bg-terracotta/10 p-5 rounded-xl border border-terracotta/20 mt-6">
+                        <h4 class="font-bold text-terracotta mb-2 flex items-center gap-2"><span class="text-xl">&#9888;</span> Foundation Root Restrictions</h4>
+                        <p class="text-sm mb-3">Mechanically, the soil exhibits moderately slow permeability. Because of the 1993 concrete foundation and surrounding driveways, only plants with non-invasive, tap-root, or highly structured root systems are permitted. Aggressive shallow-rooted species (willows, poplars, maples) are strictly prohibited.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="climate" class="scroll-mt-24">
+            <div class="mb-8 border-l-4 border-water pl-4">
+                <h2 class="text-3xl text-clay mb-2">Climatology & Eolian Dynamics</h2>
+                <p class="text-clay/70">Navigating USDA Zone 8b-9a: High heat, severe winds, and restricted moisture.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-clay/10">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-clay" id="chartTitle">Average Temperatures (High/Low)</h3>
+                            <p class="text-sm text-clay/60" id="chartSubtitle">300+ sunny days. Summers routinely exceed 100°F.</p>
+                        </div>
+                        <div class="flex bg-gray-100 p-1 rounded-lg shrink-0">
+                            <button onclick="updateChart('temp')" id="btnTemp" class="px-3 py-1.5 text-sm font-semibold rounded-md bg-white shadow text-clay transition-all">Temp</button>
+                            <button onclick="updateChart('precip')" id="btnPrecip" class="px-3 py-1.5 text-sm font-semibold rounded-md text-clay/60 hover:text-clay transition-all">Rain</button>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="climateChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-clay/10 flex flex-col justify-center">
+                    <h3 class="text-xl font-bold text-clay mb-4">Eolian (Wind) Dynamics</h3>
+                    <p class="text-sm text-clay/80 mb-4">Winds play a crucial role in plant desiccation. The predominant direction shifts from South (summer) to East (winter).</p>
+                    <ul class="space-y-4">
+                        <li class="border-b border-clay/10 pb-3">
+                            <span class="font-bold text-terracotta block mb-1">High Wind Events</span>
+                            <span class="text-sm text-clay/70">The region experiences episodic winds capable of generating sheer gusts exceeding 60 mph.</span>
+                        </li>
+                        <li class="pb-2">
+                            <span class="font-bold text-clay block mb-1">Defense Strategy</span>
+                            <span class="text-sm text-clay/70">The landscape strictly requires windbreak structures—resilient evergreen hedging to filter velocity and protect the delicate understory guilds.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="philosophy" class="scroll-mt-24">
+            <div class="mb-8 border-l-4 border-terracotta pl-4">
+                <h2 class="text-3xl text-clay mb-2">The Gaia-Inspired Philosophy (Safe & Structured)</h2>
+                <p class="text-clay/70">Maximizing biological density while enforcing strict safety constraints for family use.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl border border-clay/10 shadow-sm text-clay/80 leading-relaxed mb-8">
+                <h3 class="text-2xl text-clay mb-4">The Three Absolute Constraints</h3>
+                <p class="mb-6">To ensure this self-regulating biological organism functions as a perfectly safe backyard environment, all plant selections pass these three criteria:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-sage/5 p-5 rounded-xl border border-sage/10">
+                        <h4 class="font-bold text-sage mb-2">1. Zero Toxicity</h4>
+                        <p class="text-sm">Every plant is non-toxic to dogs and children. Common toxic desert plants (Oleander, Sago Palms, Texas Mountain Laurel) are strictly excluded.</p>
+                    </div>
+                    <div class="bg-sage/5 p-5 rounded-xl border border-sage/10">
+                        <h4 class="font-bold text-sage mb-2">2. Structural Safety</h4>
+                        <p class="text-sm">All trees/shrubs possess non-invasive, tap-root, or well-behaved root systems to protect the concrete slab foundation, patios, and sidewalks.</p>
+                    </div>
+                    <div class="bg-sage/5 p-5 rounded-xl border border-sage/10">
+                        <h4 class="font-bold text-sage mb-2">3. Physical Safety</h4>
+                        <p class="text-sm">Spiky, thorny, or jagged plants (true Cacti, sharp Agaves) are eliminated in favor of soft foliage to prevent physical injury during play.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl text-clay mb-4 mt-8">Shifting Microclimates & Shade Evolution</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-bold text-terracotta text-lg mb-2">The Western Front Yard (Full Sun)</h4>
+                        <p class="text-sm">Facing due West, it receives unmitigated, high-intensity solar radiation. Reflected heat from asphalt and stucco spikes temperatures 10-15° higher than ambient. Demands a rugged, sun-loving approach with staggered evergreen hedges.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-water text-lg mb-2">The Eastern Backyard (Deep Shade Oasis)</h4>
+                        <p class="text-sm">Inherently hospitable with morning sun and afternoon house shade. Crucially, as the Chinese Pistache anchor tree reaches a 30-foot spread, this zone transitions into a *significant dry-shade* environment requiring highly specialized understory plants.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plants" class="scroll-mt-24">
+            <div class="mb-8 border-l-4 border-sage pl-4">
+                <h2 class="text-3xl text-clay mb-2">Botanical Architecture: Expanded Layers</h2>
+                <p class="text-clay/70">Five vertical strata of strictly non-toxic, thornless, and foundation-safe selections.</p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-6" id="plantFilters">
+                <button onclick="filterPlants('all')" class="filter-btn active px-4 py-2 rounded-full text-sm font-semibold bg-sage text-white transition-colors">All Layers</button>
+                <button onclick="filterPlants('Layer 1: Canopy')" class="filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-white border border-clay/20 text-clay hover:border-sage transition-colors">Layer 1: Canopy</button>
+                <button onclick="filterPlants('Layer 2: Understory Tree')" class="filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-white border border-clay/20 text-clay hover:border-sage transition-colors">Layer 2: Small Trees</button>
+                <button onclick="filterPlants('Layer 3: Structural Shrub')" class="filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-white border border-clay/20 text-clay hover:border-sage transition-colors">Layer 3: Shrubs</button>
+                <button onclick="filterPlants('Layer 4: Perennial')" class="filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-white border border-clay/20 text-clay hover:border-sage transition-colors">Layer 4: Perennials</button>
+                <button onclick="filterPlants('Layer 5: Groundcover')" class="filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-white border border-clay/20 text-clay hover:border-sage transition-colors">Layer 5: Groundcovers</button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="plantGrid">
+                </div>
+        </section>
+
+        <section id="water" class="scroll-mt-24">
+            <div class="mb-8 border-l-4 border-water pl-4">
+                <h2 class="text-3xl text-clay mb-2">Hydrology & Kid-Friendly Ground Treatments</h2>
+                <p class="text-clay/70">Engineered applications for a region receiving only 8-10 inches of annual rainfall.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white p-6 rounded-xl border border-clay/10 shadow-sm">
+                    <h3 class="text-xl font-bold text-clay mb-3">Safe Ground Treatment Strategy</h3>
+                    <p class="text-sm font-bold text-terracotta mt-4">High-Traffic Play Zones (Inorganic)</p>
+                    <p class="text-sm text-clay/80 mb-4">Instead of sharp crushed gravel that cuts paws and knees, use smooth, rounded river rock or "pea gravel" for pathways and dog-relief areas. It drains instantly and stabilizes soil against wind.</p>
+                    
+                    <p class="text-sm font-bold text-sage mt-4">Planting Beds (Deep Organic Mulch)</p>
+                    <p class="text-sm text-clay/80">3-to-4-inch layer of double-shredded hardwood bark or cedar. <strong>Strictly avoid cocoa bean mulch</strong> (highly toxic to dogs). Decomposing wood chips build topsoil, buffer pH, and insulate moisture.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-clay/10 shadow-sm overflow-x-auto">
+                    <h3 class="text-xl font-bold text-clay mb-4">Hydrozoning Schematics</h3>
+                    <table class="data-table min-w-full text-sm">
+                        <thead>
+                            <tr>
+                                <th>Valve</th>
+                                <th>Zone Name</th>
+                                <th>Watering Strategy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-bold text-water">Valve 1</td>
+                                <td>The Shade Oasis (Backyard)</td>
+                                <td>Pistache, Hawthorn, Redbud. Moderate frequency, deep saturation.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-sage">Valve 2</td>
+                                <td>The Perimeter (Borders)</td>
+                                <td>Little Ollie Hedges. Deep, infrequent to establish structural roots. Let top soil dry.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-terracotta">Valve 3</td>
+                                <td>Sun Structural (Front Yard)</td>
+                                <td>Texas Ranger, Sage, Dalea. Extremely infrequent. Soil must dry completely between cycles.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="evolution" class="scroll-mt-24">
+            <div class="mb-8 border-l-4 border-sage pl-4">
+                <h2 class="text-3xl text-clay mb-2">Decadal Growth Expectations</h2>
+                <p class="text-clay/70">A timeline of your ecosystem's evolution over a 10-year horizon.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl border border-clay/10 shadow-sm text-clay/80 leading-relaxed mb-8">
+                <table class="data-table min-w-full text-sm">
+                    <thead>
+                        <tr>
+                            <th>Growth Phase</th>
+                            <th>Ecosystem Development</th>
+                            <th>Maintenance Adjustments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-bold whitespace-nowrap">Years 1 - 2<br><span class="text-xs font-normal text-clay/60">Establishment</span></td>
+                            <td>Landscape initially sparse. Pistache focuses on deep taproot before vertical foliage.</td>
+                            <td>Higher irrigation frequency for immature roots. Ensure dogs do not dig at base of new plantings.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold whitespace-nowrap">Years 3 - 5<br><span class="text-xs font-normal text-clay/60">Integration</span></td>
+                            <td>Pistache adds 2-3 ft vertically per year. Little Ollies reach 4-6 ft, forming a solid wind screen.</td>
+                            <td>Dial back irrigation to a "deep & infrequent" schedule.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold whitespace-nowrap">Years 6 - 10<br><span class="text-xs font-normal text-clay/60">Canopy Closure</span></td>
+                            <td>Pistache reaches 25+ ft, casting massive shadow. Understory thrives in new dry-shade environment.</td>
+                            <td>Mulch becomes rich humus altering topsoil chemistry. System becomes self-regulating.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="conclusion" class="scroll-mt-24 text-center max-w-3xl mx-auto">
+            <h2 class="text-3xl text-clay mb-6 serif">A Safe, Regenerative Habitat</h2>
+            <p class="text-clay/80 leading-relaxed text-lg mb-4">
+                By utilizing an expanded palette of strictly non-toxic, non-invasive plants and planning for the shifting canopy shade, this landscape circumvents the pitfalls of traditional desert design.
+            </p>
+            <p class="text-clay/80 leading-relaxed">
+                As you phase out your DIY planting, this hydrozoned, intelligently-mulched blueprint guarantees a lush, Gaia-inspired aesthetic that is completely safe for your children, pets, and the long-term structural integrity of your St. George home.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-clay/10 py-12 text-center px-6">
+        <div class="text-3xl text-sage mb-4">&#10048;</div>
+        <p class="text-clay/80 font-bold mb-2">Designed for the unique ecology of St. George, Utah (84790)</p>
+        <p class="text-clay/50 text-sm">Work with nature, not against it.</p>
+    </footer>
+
+    <script>
+        // --- DATA STATE ---
+        const climateData = {
+            months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            tempHigh: [54, 60, 68, 77, 88, 100, 105, 103, 94, 80, 64, 54],
+            tempLow: [31, 35, 41, 48, 56, 66, 73, 72, 62, 49, 37, 31],
+            precip: [1.1, 1.2, 0.9, 0.5, 0.3, 0.2, 0.7, 0.8, 0.6, 0.7, 0.8, 1.0]
+        };
+
+        const plantDatabase = [
+            // Layer 1: Canopy
+            { name: "Chinese Pistache", sci: "Pistacia chinensis", type: "Layer 1: Canopy", role: "Primary shade architect. Pet-safe. Non-invasive taproot. ('Keith Davey' male clone mandatory).", water: "Low", icon: "&#127795;", sun: "Full Sun" },
+            { name: "Desert Museum Palo Verde", sci: "Parkinsonia x", type: "Layer 1: Canopy", role: "Thornless, pet-safe, fast-growing. Driveway-safe root system. Ideal for high-heat front yard.", water: "Very Low", icon: "&#127795;", sun: "Full Sun" },
+            
+            // Layer 2: Understory
+            { name: "Western Redbud", sci: "Cercis occidentalis", type: "Layer 2: Understory Tree", role: "15x15 ft. Pet-safe. Pink spring flowers, heart-shaped leaves. Thrives in dappled shade.", water: "Moderate", icon: "&#127804;", sun: "Part Shade" },
+            { name: "Utah Serviceberry", sci: "Amelanchier utahensis", type: "Layer 2: Understory Tree", role: "Native (10-15 ft). White blossoms & safe, edible berries. Adaptable to partial shade.", water: "Moderate", icon: "&#127810;", sun: "Sun to Part Shade" },
+            { name: "Chaste Tree", sci: "Vitex agnus-castus", type: "Layer 2: Understory Tree", role: "15-20 ft. Purple pollinator spikes. Non-toxic to kids/dogs. Foundation-safe roots.", water: "Low", icon: "&#127803;", sun: "Sun to Part Shade" },
+            { name: "Strawberry Tree", sci: "Arbutus unedo", type: "Layer 2: Understory Tree", role: "Evergreen (15 ft). Safe, edible fruits and peeling bark. Slow-growing and non-toxic.", water: "Moderate", icon: "&#127795;", sun: "Sun to Part Shade" },
+
+            // Layer 3: Shrubs
+            { name: "Little Ollie Dwarf Olive", sci: "Olea europaea 'Montra'", type: "Layer 3: Structural Shrub", role: "Primary front yard hedge. Fruitless (no choking hazards). Non-toxic, safe roots.", water: "Low", icon: "&#127807;", sun: "Full Sun" },
+            { name: "Pink Lady Indian Hawthorn", sci: "Rhaphiolepis indica", type: "Layer 3: Structural Shrub", role: "Primary backyard understory. Non-toxic. Thrives directly beneath Pistache canopy shade.", water: "Moderate", icon: "&#127804;", sun: "Part Shade" },
+            { name: "Texas Ranger", sci: "Leucophyllum frutescens", type: "Layer 3: Structural Shrub", role: "Silvery foliage, purple flowers. Non-toxic. Thrives in severe front-yard heat.", water: "Very Low", icon: "&#127802;", sun: "Full Sun" },
+            { name: "Black Dalea", sci: "Dalea frutescens", type: "Layer 3: Structural Shrub", role: "Feathery foliage, deep purple flowers. Pet-safe, non-invasive, excellent for biodiversity.", water: "Very Low", icon: "&#127803;", sun: "Full Sun" },
+            { name: "Mexican Honeysuckle", sci: "Justicia spicigera", type: "Layer 3: Structural Shrub", role: "Orange tubular flowers. Extremely shade tolerant and 100% safe for dogs/cats.", water: "Moderate", icon: "&#127804;", sun: "Part Sun / Shade" },
+            { name: "Glossy Abelia", sci: "Abelia x grandiflora", type: "Layer 3: Structural Shrub", role: "Safe alternative to toxic Oleander. White/pink flowers; tolerates understory light well.", water: "Moderate", icon: "&#127802;", sun: "Sun to Part Shade" },
+
+            // Layer 4: Perennials
+            { name: "Coral Bells", sci: "Heuchera spp.", type: "Layer 4: Perennial", role: "Pet-safe, shade-loving with vibrant foliage. Ideal massed beneath Pistache and Hawthorns.", water: "Moderate", icon: "&#127808;", sun: "Deep Shade" },
+            { name: "Columbine", sci: "Aquilegia spp.", type: "Layer 4: Perennial", role: "Perfect for filtered Pistache shade. Spring blooms, pet-safe, and gently self-seeds.", water: "Moderate", icon: "&#127804;", sun: "Part Shade" },
+            { name: "Russian Sage", sci: "Perovskia atriplicifolia", type: "Layer 4: Perennial", role: "Soft, lavender-blue flowers. Non-toxic, incredibly tough against foot traffic.", water: "Low", icon: "&#127802;", sun: "Full Sun" },
+            { name: "Black-Eyed Susan", sci: "Rudbeckia", type: "Layer 4: Perennial", role: "Cheerful yellow flowers. Non-toxic, water-wise, highly resilient in Southern Utah.", water: "Low", icon: "&#127803;", sun: "Sun / Part Shade" },
+            { name: "Blanket Flower", sci: "Gaillardia", type: "Layer 4: Perennial", role: "Vibrant red/orange blooms. Thrives in poor soil, drought-tolerant, completely dog-safe.", water: "Very Low", icon: "&#127804;", sun: "Full Sun" },
+
+            // Layer 5: Groundcovers
+            { name: "Creeping Thyme", sci: "Thymus serpyllum", type: "Layer 5: Groundcover", role: "100% non-toxic, fragrant mat. Incredibly durable against running kids and dogs.", water: "Low", icon: "&#127806;", sun: "Sun / Part Sun" },
+            { name: "Silver Carpet", sci: "Dymondia margaretae", type: "Layer 5: Groundcover", role: "Silver-green leaves tight to ground. Extremely durable against heavy dog traffic.", water: "Low", icon: "&#127807;", sun: "Full Sun" },
+            { name: "Snow-in-Summer", sci: "Cerastium tomentosum", type: "Layer 5: Groundcover", role: "Silvery foliage, white spring flowers. Drought tolerant, resilient to playful dogs.", water: "Low", icon: "&#127804;", sun: "Full Sun" },
+            { name: "Creeping Rosemary", sci: "Rosmarinus officinalis 'Prostratus'", type: "Layer 5: Groundcover", role: "Non-toxic trailing herb. Excellent for spilling over front-yard walkways safely.", water: "Low", icon: "&#127806;", sun: "Sun" },
+            { name: "Labrador Violet", sci: "Viola labradorica", type: "Layer 5: Groundcover", role: "Purple-green foliage. Edible, non-toxic, thrives in the deep shade beneath trees.", water: "Moderate", icon: "&#127804;", sun: "Shade" },
+            { name: "Lilyturf", sci: "Liriope spp.", type: "Layer 5: Groundcover", role: "Tough evergreen grass-like plant. Very durable against pet traffic in shaded backyards.", water: "Moderate", icon: "&#127808;", sun: "Shade / Part Sun" }
+        ];
+
+        // --- CHART LOGIC ---
+        let climateChartInstance = null;
+
+        function initChart() {
+            const ctx = document.getElementById('climateChart').getContext('2d');
+            Chart.defaults.font.family = "'Outfit', sans-serif";
+            Chart.defaults.color = '#3D332D';
+
+            climateChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: getTempData(),
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: { position: 'top' },
+                        tooltip: {
+                            backgroundColor: 'rgba(61, 51, 45, 0.9)',
+                            padding: 12,
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 13 }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            grid: { color: 'rgba(61, 51, 45, 0.05)' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        function getTempData() {
+            return {
+                labels: climateData.months,
+                datasets: [
+                    {
+                        label: 'Avg High (°F)',
+                        data: climateData.tempHigh,
+                        borderColor: '#C05E46', 
+                        backgroundColor: 'rgba(192, 94, 70, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true
+                    },
+                    {
+                        label: 'Avg Low (°F)',
+                        data: climateData.tempLow,
+                        borderColor: '#8BA1B0', 
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        tension: 0.4
+                    }
+                ]
+            };
+        }
+
+        function getPrecipData() {
+            return {
+                labels: climateData.months,
+                datasets: [
+                    {
+                        label: 'Average Precipitation (Inches)',
+                        data: climateData.precip,
+                        backgroundColor: '#7D8C74', 
+                        borderRadius: 4,
+                        borderWidth: 0
+                    }
+                ]
+            };
+        }
+
+        function updateChart(type) {
+            const title = document.getElementById('chartTitle');
+            const subtitle = document.getElementById('chartSubtitle');
+            const btnTemp = document.getElementById('btnTemp');
+            const btnPrecip = document.getElementById('btnPrecip');
+
+            btnTemp.className = "px-3 py-1.5 text-sm font-semibold rounded-md text-clay/60 hover:text-clay transition-all";
+            btnPrecip.className = "px-3 py-1.5 text-sm font-semibold rounded-md text-clay/60 hover:text-clay transition-all";
+
+            if (type === 'temp') {
+                btnTemp.className = "px-3 py-1.5 text-sm font-semibold rounded-md bg-white shadow text-clay transition-all";
+                title.innerText = "Average Temperatures (High/Low)";
+                subtitle.innerText = "300+ sunny days. Summers routinely exceed 100°F.";
+                climateChartInstance.config.type = 'line';
+                climateChartInstance.data = getTempData();
+                climateChartInstance.options.scales.y.title = { display: true, text: 'Degrees Fahrenheit (°F)' };
+            } else {
+                btnPrecip.className = "px-3 py-1.5 text-sm font-semibold rounded-md bg-white shadow text-clay transition-all";
+                title.innerText = "Monthly Rainfall Accumulation";
+                subtitle.innerText = "8-10 inches annually. Requires capture of late-summer monsoons.";
+                climateChartInstance.config.type = 'bar';
+                climateChartInstance.data = getPrecipData();
+                climateChartInstance.options.scales.y.title = { display: true, text: 'Inches (in)' };
+            }
+            climateChartInstance.update();
+        }
+
+        // --- PLANT FILTERING LOGIC ---
+        function renderPlants(plants) {
+            const grid = document.getElementById('plantGrid');
+            grid.innerHTML = '';
+            
+            plants.forEach(plant => {
+                const card = document.createElement('div');
+                card.className = "plant-card bg-white p-5 rounded-xl border border-clay/10 flex flex-col h-full";
+                
+                let badgeClass = "bg-gray-100 text-gray-600 border border-gray-200";
+                if(plant.type.includes('Canopy')) badgeClass = "bg-sage/10 text-sage border border-sage/20";
+                if(plant.type.includes('Understory')) badgeClass = "bg-terracotta/10 text-terracotta border border-terracotta/20";
+                if(plant.type.includes('Shrub')) badgeClass = "bg-[#B35938]/10 text-[#B35938] border border-[#B35938]/20";
+                if(plant.type.includes('Perennial')) badgeClass = "bg-water/10 text-water border border-water/20";
+                if(plant.type.includes('Groundcover')) badgeClass = "bg-[#4A3C31]/10 text-[#4A3C31] border border-[#4A3C31]/20";
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-3xl" aria-hidden="true">${plant.icon}</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md ${badgeClass}">${plant.type.split(': ')[1] || plant.type}</span>
+                    </div>
+                    <h4 class="font-bold text-lg text-clay mb-0 leading-tight">${plant.name}</h4>
+                    <p class="text-xs text-clay/50 italic mb-3">${plant.sci}</p>
+                    <p class="text-sm text-clay/80 mb-4 flex-grow">${plant.role}</p>
+                    
+                    <div class="pt-3 border-t border-clay/10 mt-auto space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-clay/50 font-semibold uppercase tracking-wide">Sunlight</span>
+                            <span class="text-xs font-bold text-[#C05E46]">${plant.sun}</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-clay/50 font-semibold uppercase tracking-wide">Water Needs</span>
+                            <span class="text-xs font-bold text-[#8BA1B0] flex items-center gap-1"><span class="text-sm leading-none">&#128167;</span> ${plant.water}</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterPlants(type) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.className = "filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-white border border-clay/20 text-clay hover:border-sage transition-colors";
+            });
+            event.target.className = "filter-btn active px-4 py-2 rounded-full text-sm font-semibold bg-sage text-white transition-colors";
+
+            if (type === 'all') {
+                renderPlants(plantDatabase);
+            } else {
+                const filtered = plantDatabase.filter(p => p.type === type);
+                renderPlants(filtered);
+            }
+        }
+
+        // --- INITIALIZATION ---
+        window.onload = () => {
+            initChart();
+            renderPlants(plantDatabase);
+        };
+    </script>
+</body>
+</html>
